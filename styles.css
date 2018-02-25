@@ -1,0 +1,225 @@
+body {
+	margin:0;
+	color: #023656;
+	font-size: 21px;
+	font-weight: 300;
+	font-family: 'Roboto', sans-serif;
+	text-align: center;
+}
+.container {
+	max-width: 1200px;
+	margin: 0 auto;
+	padding:10px;
+}
+
+h1 {
+	font-size: 2.857em;
+	font-weight: 900;
+}
+h2 {
+	font-size: 1.714em;
+	font-weight: 700;
+}
+p {
+	max-width: 630px;
+	margin: 0 auto;
+}
+
+button {
+	margin: 14px;
+	padding: 14px 28px; 
+	background-color: #90f4d0;
+	border: none;
+	border-radius: 4px;
+	display: inline-block;
+	transition: all ease 0.5s;
+	cursor: pointer;
+	font-size: 24px;
+	font-weight: 500;
+	color: #023656;
+	font-family:'Roboto', sans-serif;
+}
+button:hover {
+	background-color: #a9ecfc;
+	-webkit-box-shadow: 0px 3px 6px 0px rgba(0,0,0,0.15);
+	-moz-box-shadow: 0px 3px 6px 0px rgba(0,0,0,0.15);
+	box-shadow: 0px 3px 6px 0px rgba(0,0,0,0.15);
+	font-size: 24px;
+	font-weight: 500;
+	color: #023656;
+	font-family:'Roboto', sans-serif;
+}
+button a {
+	font-size: 24px;
+	font-weight: 500;
+	color: #023656;
+	text-decoration: none;
+	font-family:'Roboto', sans-serif;
+}
+
+#intro {
+	height: 95vh;
+    background-image: url(bg.png);
+    background-repeat: no-repeat;
+    background-size: 120%;
+    background-position: center bottom;
+    padding-top:50px;
+}
+
+.slide {
+	display: none;
+}
+.active-slide {
+	display: block;
+}
+
+input {
+	width: 100%;
+	max-width: 740px;
+	margin: 28px auto;
+	border: none;
+	border-bottom: 2px dotted #90f4d0;
+	font-size: 21px;
+	display: inline-block;
+	color: #023656;
+	font-size: 21px;
+	font-weight: 300;
+	font-family: 'Roboto', sans-serif;
+}
+input::placeholder {
+	font-size: 21px;
+	font-weight: 900;
+	color: #95a3ab;
+}
+input:focus {
+	outline: none;
+	border: none;
+}
+#first-heading input, #first-heading input::placeholder {
+	font-size: 60px;
+	font-weight: 900;
+}
+#second-heading input, #second-heading input::placeholder {
+	font-size: 36px;
+	font-weight: 900;
+}
+#third-heading input, #third-heading input::placeholder {
+	font-size: 21px;
+	font-weight: 700;
+}
+#paragraphs input, #paragraphs input::placeholder {
+	font-size: 21px;
+	font-weight: 300;
+}
+
+.typefaces {
+	margin:30px 0;
+}
+.typefaces > div {
+	width: 280px;
+	height: 100px;
+    max-height: 100px;
+    overflow: hidden;
+	padding: 14px;
+	margin: 7px;
+	text-align: left;
+	background-color: #f1f2f2;
+	border: 2px solid #f1f2f2;
+	display: inline-block;
+	border-radius: 4px;
+	-webkit-box-shadow: 0px 5px 12px 0px rgba(0,0,0,0.15);
+	-moz-box-shadow: 0px 5px 12px 0px rgba(0,0,0,0.15);
+	box-shadow: 0px 5px 12px 0px rgba(0,0,0,0.15);
+	transition: all ease 0.25s;
+}
+.typefaces > div h2 {
+	margin: 0;
+}
+.typefaces > div:hover {
+	cursor: pointer;
+	-webkit-box-shadow: 0px 3px 6px 0px rgba(0,0,0,0.15);
+	-moz-box-shadow: 0px 3px 6px 0px rgba(0,0,0,0.15);
+	box-shadow: 0px 3px 6px 0px rgba(0,0,0,0.15);
+}
+.typefaces .selected {
+	border: 2px solid #90f4d0;
+	box-shadow: none;
+}
+.typefaces .disabled {
+	box-shadow: none;
+	color: #95a3ab;
+}
+.typefaces .disabled:hover {
+	box-shadow: none;
+	cursor: default;
+}
+.open-sans {
+	font-family: 'Open Sans', sans-serif;
+}
+.titillium {
+	font-family: 'Titillium Web', sans-serif;
+}
+.merriweather {
+	font-family: 'Merriweather', serif;
+}
+.playfair {
+	font-family: 'Playfair Display', serif;
+}
+.spectral {
+	font-family: 'Spectral', serif;
+}
+.abril {
+	font-family: 'Abril Fatface', cursive;
+}
+.lobster {
+	font-family: 'Lobster', cursive;
+}
+.kaushan {
+	font-family: 'Kaushan Script', cursive;
+}
+
+#colours .choice {
+	width: 280px;
+	height: 100px;
+    max-height: 100px;
+    overflow: hidden;
+	padding: 14px;
+	margin: 7px;
+	text-align: left;
+	background-color: #f1f2f2;
+	border: 2px dotted #a0a0a0;
+	display: inline-block;
+	border-radius: 4px;
+}
+
+.colour {
+	width: 150px;
+	height: 150px;
+	display: inline-block;
+}
+.colour:hover {
+	cursor: -webkit-grab;
+}
+.dragging {
+	opacity: 0.5;
+}
+.chosen {
+	border: 2px solid #fff!important;
+}
+
+
+#guide {
+	background-color:#f1f2f2;
+	border-radius:4px;
+	padding:14px;
+	margin-bottom:50px;
+}
+#guide h1 {
+	margin:0;
+}
+#guide .colours {
+	margin:14px;
+}
+.no-colour {
+	display: none;
+}

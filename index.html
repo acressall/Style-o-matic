@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Style-o-Matic</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css?family=Abril+Fatface|Kaushan+Script|Lobster|Merriweather:300,700,900i|Open+Sans:300,700,800|Playfair+Display:400,700,900|Roboto:300,500,700,900|Spectral:300,500,800|Titillium+Web:300,700,900');
+  </style>
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <section id="intro">
+    <div class="container">
+      <h1>Style-o-Matic</h1>
+      <p>Create a quick style guide with pre-vetted combinations for typography and colour palettes.</p>
+      <button><a href="#typography">Get Started</a></button>
+    </div>
+  </section>
+
+  <section id="typography">
+    <div class="container">
+      <h1>Typography</h1>
+      <p>You can choose four sections of typography: first heading, second heading, third heading, and paragraphs. Click on a typeface and write some sample text before moving on to the next style.</p>
+      <div id="slider">
+        <div class="slide active-slide" id="first-heading">
+          <h2>First Heading</h2>
+          <p>These headings are typically used for page titles and should be the largest and most prominent of all your headings.</p>
+          <div class="typefaces">
+          </div>
+          <input type="text" placeholder="Write some sample text"/>
+          <button class="next-slide">Next Section</button>
+        </div>
+        <div class="slide" id="second-heading">
+          <h2>Second Heading</h2>
+          <p>These headings are typically used for subtitles.</p>
+          <div class="typefaces">
+          </div>
+          <input type="text" placeholder="Write some sample text"/>
+          <button class="next-slide">Next Section</button>
+        </div>
+        <div class="slide" id="third-heading">
+          <h2>Third Heading</h2>
+          <p>These headings can be used for subsections and block titles.</p>
+          <div class="typefaces">
+          </div>
+          <input type="text" placeholder="Write some sample text"/>
+          <button class="next-slide">Next Section</button>
+        </div>
+        <div class="slide" id="paragraphs">
+          <h2>Paragraphs</h2>
+          <p>This style will be used for paragraphs and all text that is not a heading, button, or link.</p>
+          <div class="typefaces">
+          </div>
+          <input type="text" placeholder="Write some sample text"/>
+          <button class="next-slide"><a href="#colours">Colours</a></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="colours">
+    <div class="container">
+      <h1>Colours</h1>
+      <p>Create a colour palette by selecting a colour and dragging it into a colour block. If you change your mind, just click the ‘x’ to remove it.</p>
+      <div class="colour-choice">
+        <div id="colour-1" class="choice"></div>
+        <div id="colour-2" class="choice"></div>
+        <div id="colour-3" class="choice"></div>
+        <div id="colour-4" class="choice"></div>
+        <div id="colour-5" class="choice"></div>
+      </div>
+      <div class="colour-options">
+      </div>
+    </div>
+  </section>
+
+ <button id="finish"><a href="#guide-wrapper">Finish</a></button>
+
+  <section id="guide-wrapper" class="slide">
+    <div class="container">
+      <h1>Abra Cadabra!</h1>
+      <div id="guide">
+        <h1>This what your first heading will look like</h1>
+        <h2>Your second heading will look like this</h2>
+        <h3>The third heading is this style.</h3>
+        <p>Lastly, this is the style you chose for your paragraphs. Now you can see all your typography styles together.</p>
+      </div>
+    </div>
+  </section>
+
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script>
+
+  $(function() {
+
+    /*-------------
+    Create variables here outside of your functions so they can be accessed
+    anywhere (global variables). If you make these inside a function, it means
+    it's scoped to that function - it can't be accessed outside the function.
+    That was the main problem you were facing (why you couldn't access it later).
+    -------------*/
+    var firstHeading = "";
+    var secondHeading = "";
+    var thirdHeading = "";
+    var paragraphs = "";
+
+    var typefaces = {
+      openSans: {
+        name: 'Open Sans',
+        type: 'sans-serif',
+        styles: 10,
+        className: 'open-sans',
+        selection: null,
+      },
+      roboto: {
+        name: 'Roboto',
+        type: 'sans-serif',
+        styles: 12,
+        className: 'roboto',
+        selection: null,
+      },
+      titillium: {
+        name: 'Titillium',
+        type: 'sans-serif',
+        styles: 11,
+        className: 'titillium',
+        selection: null,
+      },
+      merriweather: {
+        name: 'Merriweather',
+        type: 'serif',
+        styles: 8,
+        className: 'merriweather',
+        selection: null,
+      },
+      playfair: {
+        name: 'Playfair',
+        type: 'serif',
+        styles: 6,
+        className: 'playfair',
+        selection: null,
+      },
+      spectral: {
+        name: 'Spectral',
+        type: 'serif',
+        styles: 14,
+        className: 'spectral',
+        selection: null,
+      },
+      abril: {
+        name: 'Abril FatFace',
+        type: 'display',
+        styles: 1,
+        className: 'abril',
+        selection: null,
+      },
+      lobster: {
+        name:'Lobster',
+        type: 'display',
+        styles: 1,
+        className: 'lobster',
+        selection: null,
+      },
+      kaushan: {
+        name: 'Kaushan',
+        type: 'display',
+        styles: 1,
+        className: 'kaushan',
+        selection: null,
+      },
+    }
+
+    var colours = {
+      reds: {
+        dark: '#d3021c',
+        medium: '#ea031f',
+        light: '#f93a51',
+      },
+      oranges: {
+        light: '#ff7b39',
+        medium: '#fc5908',
+        dark: '#f93a06',
+      },
+      yellows: {
+        dark: '#fdb917',
+        medium: '#ffcb05',
+        light: '#ffdd00',
+      },
+      greens: {
+        light: '#d0f44a',
+        medium:'#a5d105',
+        dark: '#90b204',
+      },
+      turquoise: {
+        dark: '#0ec1c1',
+        medium: '#17d3dd',
+        light: '#38e6f9',
+      },
+      blues: {
+        light: '#41d2f9',
+        medium: '#0598e2',
+        dark: '#057cce',
+      },
+      purples: {
+        dark: '#6b1ad3',
+        medium: '#8a2eed',
+        light: '#b87af9',
+      },
+      pinks: {
+        light: '#ea8fef',
+        medium: '#e941f2',
+        dark: '#cd05dd',
+      },
+    }
+    // Show typeface options within each type section
+    for (var item in typefaces) {
+      $('.typefaces').append(`<div class="typeface" id="${typefaces[item].type}"><h2>${typefaces[item].name}</h2><p>${typefaces[item].styles}</p></div>`);
+
+      /*-------------
+      Try using data attributes instead of class to make the item easier to grab later
+      (data attributes are great for storing info so you don't clutter your class names)
+      e.g. data-typeface="roboto"
+
+      Later you can find it by selecting the data-attribute
+      e.g. var firstHeading = $("#first-heading .selected").data("typeface")
+      --------------*/
+
+      $('.typeface')
+        .attr('class', typefaces[item].className)
+        .attr('data-typeface', typefaces[item].className);
+    }
+
+    // When typeface selected, add .selected class, and remove it from the input
+    $('.typefaces div').on('click', function() {
+      var className = $(this).attr('class');
+      $('.typefaces div').removeClass('selected');
+      $(this).addClass('selected');
+      //remove all the class names from previous clicks
+      $('input').removeAttr('class');
+      // Add the typeface's className to the input
+      $('input').addClass(className);
+      $('input').removeClass('selected');
+    });
+
+    /*------------------
+    Break up the large findTypeFace function into smaller functions. The smaller
+    a function the better because it's easier to debug :) It's also good practice
+    to write functions that only do one thing. If you find one function accomplishes
+    more than one task, you know it's time to start a new function.
+
+    Also use a parameter to determine which section the user is at so that it's
+    easier to assign the correct value to the correct variable. I did this to fix
+    a bug that basically reset all the saved variables (except the current slide).
+
+    -------
+    The Bug
+
+    The saved variables from previous sections were being overridden because every
+    findTypeface is called (which is at each section), the app assigns all the selected
+    typefaces to the heading type. To do this, it actually removes the selected class.
+    This means the next time it runs, that section has no selected typeface anymore.
+    Does that make sense?
+
+          var firstHeading = $('#first-heading .selected').removeClass('selected').attr('class');
+          var secondHeading = $('#second-heading .selected').removeClass('selected').attr('class');
+          var thirdHeading = $('#third-heading .selected').removeClass('selected').attr('class');
+          var paragraphs = $('#paragraphs .selected').removeClass('selected').attr('class');
+
+    User selects first heading, app assigns typeface to firstHeading and removes
+    the selected class from #first-heading. User selects secondHeading. App looks
+    for selected class in #first-heading but it's no longer there. firstHeading
+    is assigned undefined now.
+
+    ------
+    The Fix
+
+    I updated it so that the function now looks for the selected typeface using
+    the heading type as the parameter. We look for the section and return the
+    data attribute data-typeface which was set with the typeface name. To call this
+    function, we use: firstHeading = findTypeface("first-heading"); See below in the
+    area where you are binding the next section button click for this in practice.
+    ------------------*/
+
+    function findTypeface(type) {
+      var selectedType = $('#' + type + ' .selected').data('typeface');
+      return selectedType
+    }
+
+    function changeSelectionValue() {
+      // Find the item in the array and change the selection value
+      for (var item in typefaces) {
+        if (typefaces[item].className === firstHeading) {
+          typefaces[item].selection = 'first heading';
+          // Add the class name in the guide
+          $('#guide h1').addClass(firstHeading);
+          break;
+        } else if (typefaces[item].className === secondHeading) {
+          typefaces[item].selection = 'second heading';
+          // Add the class name in the guide
+          $('#guide h2').addClass(secondHeading);
+          break;
+        } else if (typefaces[item].className === thirdHeading) {
+          typefaces[item].selection = 'third heading';
+          // Add the class name in the guide
+          $('#guide h3').addClass(thirdHeading);
+          break;
+        } else if (typefaces[item].className === paragraphs) {
+          typefaces[item].selection = 'paragraphs';
+          // Add the class name in the guide
+          $('#guide p').addClass(paragraphs);
+          break;
+        }
+      }
+    }
+
+    function disableTypefaces() {
+      // Check the type of typeface and disable clashing ones
+      for (var item in typefaces) {
+        var typeStyle = typefaces[item].type;
+        if (typeStyle === 'serif' && typefaces[item].selection === 'first heading' || typefaces[item].selection === 'second heading' || typefaces[item].selection === 'third heading') {
+          $('#second-heading #display').addClass('disabled');
+          $('#third-heading #display').addClass('disabled');
+          break;
+        } else if (typeStyle === 'display' && typefaces[item].selection === 'first heading' || typefaces[item].selection === 'second heading' || typefaces[item].selection === 'third heading') {
+          $('#second-heading #serif').addClass('disabled');
+          $('#third-heading #serif').addClass('disabled');
+          break;
+        } else if (typeStyle === 'display') {
+          $('#paragraphs #display').addClass('disabled');
+        }
+      }
+    }
+
+    /*------------
+    Assign the selected typeface to its global variable at each heading section.
+    This makes it obvious what is happening at each section. Try to write JS that
+    reads like a story (so that when you or another dev reads it at a later time,
+    you can understand it easily).
+    -------------*/
+
+    // Switch to the next Type section when 'next section' button is clicked
+    $('#first-heading .next-slide').on('click', function() {
+      firstHeading = findTypeface("first-heading")
+      changeSelectionValue()
+      disableTypefaces()
+      $('#first-heading').removeClass('active-slide');
+      $('#second-heading').addClass('active-slide');
+    });
+    $('#second-heading .next-slide').on('click', function() {
+      secondHeading = findTypeface("second-heading")
+      changeSelectionValue()
+      disableTypefaces()
+      $('#second-heading').removeClass('active-slide');
+      $('#third-heading').addClass('active-slide');
+    });
+    $('#third-heading .next-slide').on('click', function() {
+      thirdHeading = findTypeface("third-heading")
+      changeSelectionValue()
+      disableTypefaces()
+      $('#third-heading').removeClass('active-slide');
+      $('#paragraphs').addClass('active-slide');
+    });
+    $('#paragraphs .next-slide').on('click', function() {
+      paragraphs = findTypeface("paragraphs")
+      changeSelectionValue()
+      disableTypefaces()
+
+      /*------------
+      You can call the global variables anywhere from your app now:
+      -------------*/
+      alert(firstHeading + ", " + secondHeading + ", " + thirdHeading + ", " + paragraphs );
+    })
+
+    // Make finished guide visible
+    $('#finish').on('click', function() {
+      $('#guide-wrapper').addClass('active-slide');
+
+      /*------------
+      Can even call them at the end of everything.
+      -------------*/
+      alert(firstHeading + ", " + secondHeading + ", " + thirdHeading + ", " + paragraphs );
+    })
+
+    // Display the colour options
+    for (var item in colours) {
+      var child = colours[item];
+      for (var item in child) {
+        $('.colour-options').append(`<div class="colour" style="background-color:${child[item]}"></div>`);
+      }
+    }
+
+    // Make a colour draggable
+    $('.colour').draggable({
+      cursor: 'move',
+      snap: '.colour-choice',
+      helper: 'clone',
+      drag: function (event, ui) {
+          $(this).addClass('dragging');
+      },
+    });
+    // Make it droppable
+    $('.choice').droppable({
+        over: function (event, ui) {
+          $(this).addClass('dragging');
+        },
+        out: function (event, ui) {
+          $(this).removeClass('dragging');
+        },
+        drop: function (event, ui) {
+          $('.colour').removeClass('dragging');
+          var bgColour = $('.colour').attr('style');
+          console.log(bgColour);
+          $(this).removeClass('dragging')
+          $(this).addClass('chosen');
+          $(this).attr('style', bgColour);
+
+        }
+    });
+
+  });
+
+  </script>
+
+  </body>
+
+
+</html>
